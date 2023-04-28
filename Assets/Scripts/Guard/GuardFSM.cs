@@ -9,6 +9,7 @@ public class GuardFSM : MonoBehaviour
     public NavMeshAgent NavMeshAgent;
     public float CommunicationRange;
 
+    // three behavior types: patrol through waypoints, chase the player until they escape or it hits them, and carry the player to the exit to remove them
     public readonly GuardPatrolState PatrolState = new GuardPatrolState();
     public readonly GuardChaseState ChaseState = new GuardChaseState();
     public readonly GuardRemoveState RemoveState = new GuardRemoveState();

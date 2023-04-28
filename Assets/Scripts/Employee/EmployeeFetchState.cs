@@ -20,10 +20,12 @@ public class EmployeeFetchState : EmployeeState
         {
             employee.SetNewState(employee.PanicState);
         }
-        else if(Vector3.Distance(employee.transform.position, employee.FreezerPosition) > 0.2f)
+        // move to safe if not there
+        else if(Vector3.Distance(employee.transform.position, employee.SafePosition) > 0.2f)
         {
-            employee.NavMeshAgent.SetDestination(employee.FreezerPosition);
+            employee.NavMeshAgent.SetDestination(employee.SafePosition);
         }
+        // else go back to line with money
         else
         {
             employee.SetNewState(employee.ReturnState);

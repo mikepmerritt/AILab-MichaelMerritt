@@ -11,6 +11,7 @@ public class GuardRemoveState : GuardState
         Player = GameObject.FindObjectOfType<PlayerMovement>();
         Player.Detained = true;
         Player.transform.eulerAngles = new Vector3(90f, 0, 0);
+        Player.Score -= 100;
     }
 
     public override void Update(GuardFSM guard)

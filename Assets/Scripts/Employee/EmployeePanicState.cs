@@ -23,7 +23,6 @@ public class EmployeePanicState : EmployeeState
             }
             else
             {
-                // employee.transform.LookAt(Player.transform);
                 // if the player is at the cash register, give them the money
                 if(employee.OrderingZone.GetComponent<OrderingZone>().OccupiedPlayer && !Player.HasMoney)
                 {

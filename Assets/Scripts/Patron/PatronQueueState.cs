@@ -23,7 +23,7 @@ public class PatronQueueState : PatronState
         }
         // if it hasn't been set yet, just wait
 
-        // check for armed player nearby
+        // check for armed player nearby and run if so
         PlayerMovement Player = GameObject.FindObjectOfType<PlayerMovement>();
         if(Vector3.Distance(patron.transform.position, Player.transform.position) <= patron.CommunicationRange && Player.Armed)
         {
@@ -31,7 +31,7 @@ public class PatronQueueState : PatronState
             patron.SetNewState(patron.FleeState);
         }
 
-        // check if nearby patrons are scared
+        // check if nearby patrons are scared and run if so
         PatronFSM[] AllPatrons = GameObject.FindObjectsOfType<PatronFSM>();
         foreach(PatronFSM p in AllPatrons)
         {

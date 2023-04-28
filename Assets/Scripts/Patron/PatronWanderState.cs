@@ -17,14 +17,14 @@ public class PatronWanderState : PatronState
 
     public override void Update(PatronFSM patron)
     {
-        // check for armed player nearby
+        // check for armed player nearby and run if so
         PlayerMovement Player = GameObject.FindObjectOfType<PlayerMovement>();
         if(Vector3.Distance(patron.transform.position, Player.transform.position) <= patron.CommunicationRange && Player.Armed)
         {
             patron.SetNewState(patron.FleeState);
         }
 
-        // check if nearby patrons are scared
+        // check if nearby patrons are scared and run if so
         PatronFSM[] AllPatrons = GameObject.FindObjectsOfType<PatronFSM>();
         foreach(PatronFSM p in AllPatrons)
         {

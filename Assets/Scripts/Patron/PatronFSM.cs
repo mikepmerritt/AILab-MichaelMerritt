@@ -13,6 +13,7 @@ public class PatronFSM : MonoBehaviour
     public bool Afraid;
     public float CommunicationRange;
 
+    // three behavior types: wander through random waypoints, go get in the queue for money if the line has 2 or less people, and run away if threatened
     public readonly PatronWanderState WanderState = new PatronWanderState();
     public readonly PatronQueueState QueueState = new PatronQueueState();
     public readonly PatronFleeState FleeState = new PatronFleeState();

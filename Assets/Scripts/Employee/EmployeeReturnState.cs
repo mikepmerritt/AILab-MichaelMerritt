@@ -15,7 +15,7 @@ public class EmployeeReturnState : EmployeeState
     {
         Player = GameObject.FindObjectOfType<PlayerMovement>();
 
-        // check for armed player nearby
+        // check for armed player nearby, panic and give them money if so
         if(Vector3.Distance(employee.transform.position, Player.transform.position) <= employee.CommunicationRange && Player.Armed)
         {
             employee.SetNewState(employee.PanicState);

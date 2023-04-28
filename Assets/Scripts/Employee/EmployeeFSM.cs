@@ -12,8 +12,9 @@ public class EmployeeFSM : MonoBehaviour
     public PatronQueue PatronQueue;
     public GameObject OrderingZone, Money;
     public Vector3 CashRegisterPosition = new Vector3(-6.28f, 1f, 11.8f);
-    public Vector3 FreezerPosition = new Vector3(11.5f, 1f, 11.8f);
+    public Vector3 SafePosition = new Vector3(11.5f, 1f, 11.8f);
 
+    // four behavior types: idle, fetch cash from safe, return with cash, and panic (give the player money when threatened)
     public readonly EmployeeIdleState IdleState = new EmployeeIdleState();
     public readonly EmployeeFetchState FetchState = new EmployeeFetchState();
     public readonly EmployeeReturnState ReturnState = new EmployeeReturnState();
