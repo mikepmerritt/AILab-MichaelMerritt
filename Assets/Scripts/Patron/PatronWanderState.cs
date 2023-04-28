@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PatronWanderState : PatronState
 {
+    private bool OneWanderCompleted;
     private float TimeTillNextWander;
     private Vector3 WanderPosition;
     private float MinX = -13.5f, MaxX = 13.5f, MinZ = -13.5f, MaxZ = -3.25f;
 
     public override void EnterState(PatronFSM patron)
     {
-        TimeTillNextWander = 0;
+        OneWanderCompleted = false;
+        TimeTillNextWander = 0f;
     }
 
     public override void Update(PatronFSM patron)
@@ -43,6 +45,14 @@ public class PatronWanderState : PatronState
             // move to random position in lobby
             WanderPosition = new Vector3(Random.Range(MinX, MaxX), 1, Random.Range(MinZ, MaxZ));
             patron.NavMeshAgent.SetDestination(WanderPosition);
+
+            // check to see if there is an opportunity to go up front (only if already wandered once)
+            if(OneWanderCompleted && patron.PatronQueue.HasRoomForPatron())
+            {
+                patron.SetNewState(patron.QueueState);
+            }
+            
+            OneWanderCompleted = true;
         }
     }
 }

@@ -7,17 +7,25 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody Rb;
     [SerializeField] private float Speed;
     [SerializeField] private GameObject Weapon;
-    public bool Armed;
+    public bool Armed, Detained;
 
     void FixedUpdate()
     {
-        Rb.velocity = Vector3.Normalize(new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")));
-        Rb.velocity *= Speed;
-
-        if(Input.GetKey(KeyCode.Space))
+        if(!Detained)
         {
-            Weapon.SetActive(true);
-            Armed = true;
+            Rb.velocity = Vector3.Normalize(new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")));
+            Rb.velocity *= Speed;
+
+            if(Input.GetKey(KeyCode.Space))
+            {
+                Weapon.SetActive(true);
+                Armed = true;
+            }
+            else
+            {
+                Weapon.SetActive(false);
+                Armed = false;
+            }
         }
         else
         {

@@ -9,7 +9,7 @@ public class PatronFSM : MonoBehaviour
     private Material ShirtMaterial;
 
     public NavMeshAgent NavMeshAgent;
-    // public PatronQueue[] Queues;
+    public PatronQueue PatronQueue;
     public bool Afraid;
     public float CommunicationRange;
 
@@ -29,6 +29,9 @@ public class PatronFSM : MonoBehaviour
         // set up communication variables
         Afraid = false;
         CommunicationRange = 5f;
+
+        // set up queues
+        PatronQueue = GameObject.FindObjectOfType<PatronQueue>();
     }
 
     private void Start()
