@@ -8,7 +8,7 @@ public class GuardChaseState : GuardState
 
     public override void EnterState(GuardFSM guard)
     {
-        // do nothing
+        guard.NavMeshAgent.speed = 5f;
     }
 
     public override void Update(GuardFSM guard)

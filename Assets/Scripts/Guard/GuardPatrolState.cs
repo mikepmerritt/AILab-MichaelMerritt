@@ -18,6 +18,7 @@ public class GuardPatrolState : GuardState
 
     public override void EnterState(GuardFSM guard)
     {
+        guard.NavMeshAgent.speed = 3.5f;
         Player = GameObject.FindObjectOfType<PlayerMovement>();
         Player.Detained = false;
         WaypointIndex = 0;
@@ -28,7 +29,7 @@ public class GuardPatrolState : GuardState
         Player = GameObject.FindObjectOfType<PlayerMovement>();
 
         // check for armed player nearby
-        if(Vector3.Distance(guard.transform.position, Player.transform.position) <= guard.CommunicationRange && Player.Armed)
+        if(Vector3.Distance(guard.transform.position, Player.transform.position) <= guard.CommunicationRange && Player.Armed && Player.transform.position.z > -15f)
         {
             guard.SetNewState(guard.ChaseState);
         }
@@ -37,7 +38,7 @@ public class GuardPatrolState : GuardState
         PatronFSM[] AllPatrons = GameObject.FindObjectsOfType<PatronFSM>();
         foreach(PatronFSM p in AllPatrons)
         {
-            if(Vector3.Distance(guard.transform.position, p.transform.position) <= guard.CommunicationRange && p.Afraid)
+            if(Vector3.Distance(guard.transform.position, p.transform.position) <= guard.CommunicationRange && p.Afraid && Player.transform.position.z > -15f)
             {
                 guard.SetNewState(guard.ChaseState);
             }

@@ -6,8 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody Rb;
     [SerializeField] private float Speed;
-    [SerializeField] private GameObject Weapon;
-    public bool Armed, Detained;
+    [SerializeField] private GameObject Weapon, Money;
+    public bool Armed, Detained, HasMoney;
 
     void FixedUpdate()
     {
@@ -31,6 +31,21 @@ public class PlayerMovement : MonoBehaviour
         {
             Weapon.SetActive(false);
             Armed = false;
+            HasMoney = false;
+            Money.SetActive(false);
         }
+
+        if(HasMoney && transform.position.z < -16f)
+        {
+            // increase score
+            HasMoney = false;
+            Money.SetActive(false);
+        }
+    }
+
+    public void GiveMoney()
+    {
+        HasMoney = true;
+        Money.SetActive(true);
     }
 }
