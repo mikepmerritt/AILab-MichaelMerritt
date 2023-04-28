@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Rigidbody Rb;
+    [SerializeField] private float Speed;
+    [SerializeField] private GameObject Weapon;
+    public bool Armed;
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        Rb.velocity = Vector3.Normalize(new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")));
+        Rb.velocity *= Speed;
+
+        if(Input.GetKey(KeyCode.Space))
+        {
+            Weapon.SetActive(true);
+            Armed = true;
+        }
+        else
+        {
+            Weapon.SetActive(false);
+            Armed = false;
+        }
     }
 }
